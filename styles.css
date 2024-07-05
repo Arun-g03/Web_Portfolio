@@ -64,7 +64,7 @@ section#slideshow {
 /* Slideshow styles */
 .slideshow-container {
     position: relative;
-    max-width: 100%;
+    max-width: 50%;
     margin: auto;
     overflow: hidden;
 }
