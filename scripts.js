@@ -19,8 +19,12 @@ function init() {
 
     // Load FBX model
     const loader = new THREE.FBXLoader();
-    loader.load('aventador-svj-katanatm-sdctm-x-blackdeath/source/svj_PACKED.fbx', function(object) {
+    loader.load('aventador-svj-katanatm-sdctm-x-blackdeath/source/svj_PACKED.fbx, function(object) {
         scene.add(object);
+
+        // Hide loading screen and show content
+        document.getElementById('loading-screen').classList.add('hidden');
+        document.getElementById('content').classList.remove('hidden');
     }, undefined, function(error) {
         console.error(error);
     });
