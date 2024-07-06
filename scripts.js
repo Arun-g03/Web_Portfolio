@@ -80,11 +80,6 @@ function init() {
         console.error('An error happened', error);
     });
 
-    // OrbitControls for camera
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
-    camera.position.set(0, 2, 5);
-    controls.update();
-
     // Handle window resize
     window.addEventListener('resize', function() {
         const width = window.innerWidth;
@@ -97,9 +92,24 @@ function init() {
     // Render loop
     function animate() {
         requestAnimationFrame(animate);
-        controls.update();
+        updateCamera();
         renderer.render(scene, camera);
     }
 
     animate();
+
+    // Scroll-based camera rotation
+    function updateCamera() {
+        const scrollPercentage = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+        const angle = scrollPercentage * 2 * Math.PI; // Full rotation over scroll
+        const radius = 10; // Distance from the center
+
+        camera.position.x = radius * Math.sin(angle);
+        camera.position.z = radius * Math.cos(angle);
+        camera.lookAt(scene.position);
+    }
+
+    // Initial camera position
+    camera.position.set(10, 2, 0);
+    updateCamera();
 }
