@@ -9,13 +9,34 @@ function init() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.getElementById('threejs-canvas').appendChild(renderer.domElement);
 
-    // Add light to the scene
+    // Add ambient light to the scene
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
     scene.add(ambientLight);
 
+    // Add directional light to the scene
     const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
     directionalLight.position.set(10, 10, 10).normalize();
     scene.add(directionalLight);
+
+    // Add spotlight
+    const spotlight = new THREE.SpotLight(0xffffff, 1);
+    spotlight.position.set(0, 50, 0);  // Adjust the position as needed
+    spotlight.angle = Math.PI / 6;
+    spotlight.penumbra = 0.1;
+    spotlight.decay = 2;
+    spotlight.distance = 200;
+
+    spotlight.castShadow = true;
+    spotlight.shadow.mapSize.width = 1024;
+    spotlight.shadow.mapSize.height = 1024;
+    spotlight.shadow.camera.near = 10;
+    spotlight.shadow.camera.far = 200;
+
+    scene.add(spotlight);
+
+    // Add spotlight helper (optional, for visualization)
+    const spotLightHelper = new THREE.SpotLightHelper(spotlight);
+    scene.add(spotLightHelper);
 
     // Texture loader
     const textureLoader = new THREE.TextureLoader();
@@ -47,14 +68,14 @@ function init() {
                 child.material.normalMap.encoding = THREE.LinearEncoding;
 
                 child.material.needsUpdate = true;
+
+                // Enable shadows
+                child.castShadow = true;
+                child.receiveShadow = true;
             }
         });
 
         scene.add(object);
-
-        // Hide loading screen and show content
-        document.getElementById('loading-screen').classList.add('hidden');
-        document.getElementById('content').classList.remove('hidden');
     }, undefined, function(error) {
         console.error('An error happened', error);
     });
