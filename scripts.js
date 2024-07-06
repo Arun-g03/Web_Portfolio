@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function init() {
     const scene = new THREE.Scene();
+    scene.background = new THREE.Color('crimson'); // Set background color to crimson red
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -19,9 +20,9 @@ function init() {
     scene.add(directionalLight);
 
     // Add spotlight
-    const spotlight = new THREE.SpotLight(0xffffff, 1);
-    spotlight.position.set(0, 50, 0);  // Adjust the position as needed
-    spotlight.angle = Math.PI / 6;
+    const spotlight = new THREE.SpotLight(0xffd700, 5); // Adjust color and intensity here
+    spotlight.position.set(0, 30, 200);  // Adjust the position as needed
+    spotlight.angle = Math.PI / 4;
     spotlight.penumbra = 0.1;
     spotlight.decay = 2;
     spotlight.distance = 200;
@@ -102,7 +103,7 @@ function init() {
     function updateCamera() {
         const scrollPercentage = window.scrollY / (document.body.scrollHeight - window.innerHeight);
         const angle = scrollPercentage * 2 * Math.PI; // Full rotation over scroll
-        const radius = 10; // Distance from the center
+        const radius = 20; // Increased distance from the center
 
         camera.position.x = radius * Math.sin(angle);
         camera.position.z = radius * Math.cos(angle);
@@ -110,6 +111,6 @@ function init() {
     }
 
     // Initial camera position
-    camera.position.set(10, 2, 0);
+    camera.position.set(20, 10, 0); // Set further distance
     updateCamera();
 }
