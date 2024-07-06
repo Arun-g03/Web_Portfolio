@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unreal Engine Projects</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="root">
+        <canvas id="threejs-canvas"></canvas> <!-- The canvas is now a root element -->
+        <header>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="pythonProjects.html">Python Projects</a></li>
+                    <li><a href="UnrealProjects.html">Unreal Engine Projects</a></li>
+                    <li><a href="Gallery.html">Gallery</a></li>
+                    <li><a href="Contact.html">Contact</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <section id="home" class="section home">
+                <h1>Unreal Engine Projects</h1>
+                <p>This area showcases some of my Unreal Engine Projects.</p>
+            </section>
+
+            <section id="UE-projects" class="section UE-projects">
+                <h2>UE Projects</h2>
+                <p>Details about your UE projects can be listed here.</p>
+                <div class="project-grid">
+                    <div class="project-item">UE Project 1</div>
+                    <div class="project-item">UE Project 2</div>
+                    <div class="project-item">UE Project 3</div>
+                </div>
+            </section>
+
+            
+        </main>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fflate@0.6.9/umd/index.js"></script> <!-- Added fflate library -->
+    <script src="https://cdn.rawgit.com/mrdoob/three.js/r128/examples/js/loaders/FBXLoader.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>

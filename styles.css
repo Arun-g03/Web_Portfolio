@@ -60,7 +60,7 @@ header {
 }
 
 main {
-    padding-top: 60px; /* Make space for the fixed header */
+    padding-top: 80px; /* Make space for the fixed header */
     position: relative;
     z-index: 10; /* Ensure content is above the Three.js canvas */
 }
@@ -71,10 +71,12 @@ main {
     min-height: 100vh;
 }
 
-.home, .about, .projects, .contact {
+.section.home {
     background-color: rgba(255, 255, 255, 0.8);
-    position: relative;
-    z-index: 10; /* Ensure sections are above the Three.js canvas */
+}
+
+.section.about, .section.python-projects, .section.contact, .section.ue-projects {
+    background-color: rgba(240, 240, 240, 0.8);
 }
 
 .project-grid {
@@ -118,4 +120,128 @@ button {
 
 button:hover {
     background-color: #555;
+}
+
+#gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.gallery-item {
+    position: relative;
+    width: 300px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.gallery-item .overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+    position: relative;
+    margin: auto;
+    padding: 0;
+    width: 80%;
+    max-width: 700px;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.mySlides {
+    display: none;
+    text-align: center;
+}
+
+.mySlides img {
+    width: 100%;
+    height: auto;
+}
+
+.description {
+    color: #fff;
+    padding: 10px;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    bottom: 0;
+    flex-shrink: 0;
 }

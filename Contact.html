@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Page</title>
+    <title>Contact Me</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -23,19 +23,22 @@
         </header>
         
         <main>
-            <section id="home" class="section home">
-                <h1>Welcome to My Site</h1>
-                <p>This is site aims to showcase some of my skills, projects and achievements.</p>
+            <section id="contact" class="section contact">
+                <h2>Contact</h2>
+                <p>If you have any questions or would like to get in touch, please fill out the form below:</p>
+                <form>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" required></textarea>
+                    
+                    <button type="submit">Send</button>
+                </form>
             </section>
-
-            <section id="about" class="section about">
-                <h2>About Me</h2>
-                <p>I like coding and enjoy problem solving.</p>
-            </section>
-
-            
-
-            
         </main>
     </div>
     
@@ -44,7 +47,4 @@
     <script src="https://cdn.rawgit.com/mrdoob/three.js/r128/examples/js/loaders/FBXLoader.js"></script>
     <script src="scripts.js"></script>
 </body>
-<footer>
-    <p>&copy; 2024. Arun.G</p>
-</footer>
 </html>

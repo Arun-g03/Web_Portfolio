@@ -8,27 +8,31 @@
 </head>
 <body>
     <header>
-        <h1>Gallery</h1>
-        <nav>
+        <nav class="navbar">
             <ul>
-                <li><a href="index.html">Welcome</a></li>
-                <li><a href="Gallery.html">Gallery</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="pythonProjects.html">Python Projects</a></li>
+                <li><a href="UnrealProjects.html">Unreal Engine Projects</a></li>
+                <li><a href="Gallery.html">Gallery</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="about.html">About</a></li>
             </ul>
         </nav>
     </header>
     
     <main>
         <section id="gallery">
-            <div class="gallery-item">
-                <img src="image1.jpg" alt="Project 1" onclick="openModal();currentSlide(1)">
+            <div class="gallery-item" onclick="openModal();currentSlide(1)">
+                <img src="Images/CarRender.0001.png" alt="Project 1">
+                <div class="overlay">Project 1 Description</div>
             </div>
-            <div class="gallery-item">
-                <img src="image2.jpg" alt="Project 2" onclick="openModal();currentSlide(2)">
+            <div class="gallery-item" onclick="openModal();currentSlide(2)">
+                <img src="Images/CarRender.0002.png" alt="Project 2">
+                <div class="overlay">Project 2 Description</div>
             </div>
-            <div class="gallery-item">
-                <img src="image3.jpg" alt="Project 3" onclick="openModal();currentSlide(3)">
+            <div class="gallery-item" onclick="openModal();currentSlide(3)">
+                <img src="image3.jpg" alt="Project 3">
+                <div class="overlay">Project 3 Description</div>
             </div>
             <!-- Add more gallery items as needed -->
         </section>
@@ -38,13 +42,16 @@
             <span class="close cursor" onclick="closeModal()">&times;</span>
             <div class="modal-content">
                 <div class="mySlides">
-                    <img src="image1.jpg" style="width:100%">
+                    <img src="Images/CarRender.0001.png" style="width:100%">
+                    <div class="description">Detailed description of Project 1.</div>
                 </div>
                 <div class="mySlides">
                     <img src="image2.jpg" style="width:100%">
+                    <div class="description">Detailed description of Project 2.</div>
                 </div>
                 <div class="mySlides">
                     <img src="image3.jpg" style="width:100%">
+                    <div class="description">Detailed description of Project 3.</div>
                 </div>
                 <!-- Add more slides as needed -->
 
@@ -53,8 +60,6 @@
             </div>
         </div>
     </main>
-
-    
 
     <script src="scripts.js"></script>
 </body>
