@@ -6,43 +6,29 @@ function init() {
     const scene = new THREE.Scene();
     scene.background = new THREE.Color('crimson'); // Set background color to crimson red
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 150, 500); // Pushed back camera position
+
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
 
-    // Create and append the container for the canvas
-    const canvasContainer = document.createElement('div');
-    canvasContainer.className = 'threejs-canvas-container';
-    document.body.appendChild(canvasContainer);
-    canvasContainer.appendChild(renderer.domElement);
+    // Ground
+    const groundGeometry = new THREE.PlaneGeometry(1000, 1000);
+    const groundMaterial = new THREE.MeshPhongMaterial({ color: 0x2f2f2f }); // Tarmac grey/black
+    const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+    ground.rotation.x = -Math.PI / 2;
+    ground.position.y = 0;
+    ground.receiveShadow = true;
+    scene.add(ground);
 
-    // Add ambient light to the scene
+    // Lights
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
     scene.add(ambientLight);
 
-    // Add directional light to the scene
     const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    directionalLight.position.set(10, 10, 10).normalize();
+    directionalLight.position.set(10, 20, 10);
+    directionalLight.castShadow = true;
     scene.add(directionalLight);
-
-    // Add spotlight
-    const spotlight = new THREE.SpotLight(0xffd700, 2); // Adjust color and intensity here
-    spotlight.position.set(0, 50, 50);  // Adjust the position as needed
-    spotlight.angle = Math.PI / 4;
-    spotlight.penumbra = 0.1;
-    spotlight.decay = 2;
-    spotlight.distance = 200;
-
-    spotlight.castShadow = true;
-    spotlight.shadow.mapSize.width = 1024;
-    spotlight.shadow.mapSize.height = 1024;
-    spotlight.shadow.camera.near = 10;
-    spotlight.shadow.camera.far = 200;
-
-    scene.add(spotlight);
-
-    // Add spotlight helper (optional, for visualization)
-    const spotLightHelper = new THREE.SpotLightHelper(spotlight);
-    scene.add(spotLightHelper);
 
     // Texture loader
     const textureLoader = new THREE.TextureLoader();
@@ -53,9 +39,14 @@ function init() {
     const normalMap = textureLoader.load('aventador-svj_Model/Body_Normal_DirectX.png');
     const fabricInterior = textureLoader.load('aventador-svj_Model/Fabric004_4K_Colorcopie.jpeg');
 
+    let carModel;
+
     // Load FBX model
     const loader = new THREE.FBXLoader();
     loader.load('aventador-svj_Model/aventador_Model.fbx', function(object) {
+        object.position.set(0, 0, 0); // Set model position at (0, 0, 0)
+        object.rotation.y = Math.PI; // Rotate model 180 degrees
+
         object.traverse(function(child) {
             if (child.isMesh) {
                 // Apply textures
@@ -81,7 +72,8 @@ function init() {
             }
         });
 
-        scene.add(object);
+        carModel = object;
+        scene.add(carModel);
     }, undefined, function(error) {
         console.error('An error happened', error);
     });
@@ -95,27 +87,20 @@ function init() {
         camera.updateProjectionMatrix();
     });
 
+    // Handle mouse movement
+    window.addEventListener('mousemove', function(event) {
+        if (carModel) {
+            const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            const maxRotation = Math.PI / 2; // 90 degrees in radians
+            carModel.rotation.y = Math.PI + mouseX * maxRotation; // Rotate based on mouse position with max limit
+        }
+    });
+
     // Render loop
     function animate() {
         requestAnimationFrame(animate);
-        updateCamera();
         renderer.render(scene, camera);
     }
 
     animate();
-
-    // Scroll-based camera rotation
-    function updateCamera() {
-        const scrollPercentage = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-        const angle = scrollPercentage * 2 * Math.PI; // Full rotation over scroll
-        const radius = 30; // Increased distance from the center
-
-        camera.position.x = radius * Math.sin(angle);
-        camera.position.z = radius * Math.cos(angle);
-        camera.lookAt(scene.position);
-    }
-
-    // Initial camera position
-    camera.position.set(30, 15, 0); // Set further distance
-    updateCamera();
 }

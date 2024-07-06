@@ -1,11 +1,26 @@
 /* General styles */
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+body, html {
     margin: 0;
     padding: 0;
-    background-color: crimson; /* Set background color to crimson red */
+    width: 100%;
+    height: 100%;
     overflow-x: hidden; /* Prevent horizontal scroll */
+    font-family: Arial, sans-serif;
+}
+
+#root {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#threejs-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Ensure Three.js canvas is behind other content */
 }
 
 header {
@@ -46,43 +61,61 @@ header {
 
 main {
     padding-top: 60px; /* Make space for the fixed header */
+    position: relative;
+    z-index: 10; /* Ensure content is above the Three.js canvas */
 }
 
-.section, .home {
+.section {
     padding: 60px 20px;
     text-align: center;
     min-height: 100vh;
 }
 
-.home {
-    background-color: #e0f7fa;
+.home, .about, .projects, .contact {
+    background-color: rgba(255, 255, 255, 0.8);
+    position: relative;
+    z-index: 10; /* Ensure sections are above the Three.js canvas */
 }
 
-.section {
-    background-color: #fff;
+.project-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
-.threejs-canvas-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* Place it behind other content */
-}
-
-#threejs-canvas {
-    width: 100%;
-    height: 100%;
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-footer {
-    text-align: center;
-    padding: 20px 0;
-    background: #333;
+.project-item {
+    background: #444;
     color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 200px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+input, textarea {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
 }
