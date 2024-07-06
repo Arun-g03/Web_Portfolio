@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Page</title>
+    <title>3D Object Viewer</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#section1">Section 1</a></li>
                 <li><a href="#section2">Section 2</a></li>
-                <li><a href="#section3">Section 3</a></li>
+                <li><a href="#threejs">3D Viewer</a></li>
             </ul>
         </nav>
     </header>
@@ -36,14 +36,8 @@
             <img src="path/to/image2.jpg" alt="Image 2">
         </section>
 
-        <section id="section3" class="section">
-            <h2>Section 3</h2>
-            <p>Even more interesting content here.</p>
-            <img src="path/to/image3.jpg" alt="Image 3">
-        </section>
-
         <section id="threejs" class="threejs-section">
-            <h2>3D Ball Animation</h2>
+            <h2>3D Object Viewer</h2>
             <div id="threejs-canvas"></div>
         </section>
     </main>
@@ -53,6 +47,8 @@
     </footer>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.rawgit.com/mrdoob/three.js/r128/examples/js/loaders/FBXLoader.js"></script>
+    <script src="https://cdn.rawgit.com/mrdoob/three.js/r128/examples/js/controls/OrbitControls.js"></script>
     <script src="scripts.js"></script>
 </body>
 </html>

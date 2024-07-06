@@ -5,37 +5,46 @@ document.addEventListener('DOMContentLoaded', function() {
 function init() {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer();
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.getElementById('threejs-canvas').appendChild(renderer.domElement);
 
-    const geometry = new THREE.SphereGeometry(1, 32, 32);
-    const material = new THREE.MeshBasicMaterial({color: 0xff0000});
-    const ball = new THREE.Mesh(geometry, material);
-    scene.add(ball);
+    // Add light to the scene
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
 
-    const planeGeometry = new THREE.PlaneGeometry(100, 10);
-    const planeMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00, side: THREE.DoubleSide});
-    const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-    plane.rotation.x = -0.5 * Math.PI;
-    plane.position.y = -1;
-    scene.add(plane);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    directionalLight.position.set(10, 10, 10).normalize();
+    scene.add(directionalLight);
 
-    camera.position.z = 10;
+    // Load FBX model
+    const loader = new THREE.FBXLoader();
+    loader.load('aventador-svj-katanatm-sdctm-x-blackdeath/source/svj_PACKED.fbx', function(object) {
+        scene.add(object);
+    }, undefined, function(error) {
+        console.error(error);
+    });
 
-    let ballPosition = 0;
-    const animate = function () {
+    // OrbitControls for camera
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    camera.position.set(0, 2, 5);
+    controls.update();
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+    });
+
+    // Render loop
+    function animate() {
         requestAnimationFrame(animate);
-
-        ballPosition += 0.05;
-        ball.position.x = ballPosition;
-
-        if (ball.position.x > 50) {
-            ballPosition = -50;
-        }
-
+        controls.update();
         renderer.render(scene, camera);
-    };
+    }
 
     animate();
 }
