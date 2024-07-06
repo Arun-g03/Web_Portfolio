@@ -8,7 +8,10 @@ function init() {
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    document.getElementById('threejs-canvas').appendChild(renderer.domElement);
+    const canvasContainer = document.createElement('div');
+    canvasContainer.className = 'threejs-canvas-container';
+    document.body.appendChild(canvasContainer);
+    canvasContainer.appendChild(renderer.domElement);
 
     // Add ambient light to the scene
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
