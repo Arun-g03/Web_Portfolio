@@ -19,7 +19,7 @@ function init() {
 
     // Load FBX model
     const loader = new THREE.FBXLoader();
-    loader.load('aventador-svj-katanatm-sdctm-x-blackdeath/source/svj_PACKED.fbx, function(object) {
+    loader.load('path/to/your/model.fbx', function(object) {
         scene.add(object);
 
         // Hide loading screen and show content
