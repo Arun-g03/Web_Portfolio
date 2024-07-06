@@ -48,14 +48,14 @@ function init() {
     const textureLoader = new THREE.TextureLoader();
 
     // Load textures
-    const baseColor = textureLoader.load('aventador-svj_Model/textures/Body_Base_color.png');
-    const metallic = textureLoader.load('aventador-svj_Model/textures/Body_Metallic.png');
-    const normalMap = textureLoader.load('aventador-svj_Model/textures/Body_Normal_DirectX.png');
-    const fabricInterior = textureLoader.load('aventador-svj_Model/textures/Fabric004_4K_Colorcopie.jpeg');
+    const baseColor = textureLoader.load('aventador-svj_Model/Body_Base_color.png');
+    const metallic = textureLoader.load('aventador-svj_Model/Body_Metallic.png');
+    const normalMap = textureLoader.load('aventador-svj_Model/Body_Normal_DirectX.png');
+    const fabricInterior = textureLoader.load('aventador-svj_Model/Fabric004_4K_Colorcopie.jpeg');
 
     // Load FBX model
     const loader = new THREE.FBXLoader();
-    loader.load('aventador-svj_Model/source/svj_PACKED.fbx', function(object) {
+    loader.load('aventador-svj_Model/aventador_Model.fbx', function(object) {
         object.traverse(function(child) {
             if (child.isMesh) {
                 // Apply textures
