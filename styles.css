@@ -1,126 +1,78 @@
-/* Reset some default styles */
-body, h1, h2, p, ul, li, form, input, textarea, button {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 /* General styles */
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
     background-color: #f4f4f4;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
 }
 
 header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
     background: #333;
     color: #fff;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
     padding: 10px 0;
-    text-align: center;
 }
 
-nav ul {
+.navbar ul {
     list-style: none;
+    display: flex;
+    gap: 20px;
 }
 
-nav ul li {
+.navbar ul li {
     display: inline;
-    margin: 0 10px;
 }
 
-nav ul li a {
+.navbar ul li a {
     color: #fff;
     text-decoration: none;
+    font-size: 1.2em;
+}
+
+.navbar ul li a:hover {
+    text-decoration: underline;
 }
 
 main {
-    flex: 1; /* Ensures main takes up all available space */
-    margin-top: 20px;
-    padding: 20px;
+    padding-top: 60px; /* Make space for the fixed header */
+}
+
+.section, .home, .threejs-section {
+    padding: 60px 20px;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.home {
+    background-color: #e0f7fa;
+}
+
+.section {
+    background-color: #fff;
+}
+
+.threejs-section {
+    background-color: #f9fbe7;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 footer {
     text-align: center;
-    padding: 10px 0;
+    padding: 20px 0;
     background: #333;
     color: #fff;
-}
-
-/* Section styles */
-section {
-    background: #fff;
-    padding: 20px;
-    margin-bottom: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-section#slideshow {
-    text-align: center;
-}
-
-/* Slideshow styles */
-.slideshow-container {
-    position: relative;
-    max-width: 50%;
-    margin: auto;
-    overflow: hidden;
-}
-
-.slide {
-    display: none;
-}
-
-.fade {
-    animation-name: fade;
-    animation-duration: 1.5s;
-}
-
-@keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
-}
-
-.dot {
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
-    cursor: pointer;
-}
-
-.active {
-    background-color: #717171;
-}
-
-/* Contact form styles */
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-form label {
-    margin-top: 10px;
-}
-
-form input, form textarea, form button {
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-form button {
-    background: #333;
-    color: #fff;
-    cursor: pointer;
-}
-
-form button:hover {
-    background: #555;
 }
