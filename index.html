@@ -5,46 +5,154 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Page</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Vanta.js and Three.js scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.21/vanta.net.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            VANTA.NET({
+                el: "#vanta-bg",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 1050.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0xff4141,
+                backgroundColor: 0x0
+            });
+        });
+    </script>
 </head>
-<body>
-    <div id="root">
-        <canvas id="threejs-canvas"></canvas> <!-- The canvas is now a root element -->
-        <header>
-            <nav class="navbar">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="pythonProjects.html">Python Projects</a></li>
-                    <li><a href="UnrealProjects.html">Unreal Engine Projects</a></li>
-                    <li><a href="Gallery.html">Gallery</a></li>
-                    <li><a href="Contact.html">Contact</a></li>
-                    <li><a href="about.html">About</a></li>
-                </ul>
-            </nav>
-        </header>
+<body id="vanta-bg">
+    <!-- Sidebar -->
+    <div class="Sidebar Sidebar-block Sidebar-light-grey" id="mySidebar">
+        <button class="Sidebar-item Sidebar-button Sidebar-large" onclick="Sidebar_close()", >Close &times;</button>
+        <h3 class="Sidebar-item">Menu</h3>
+        <a href="index.html" class="Sidebar-item Sidebar-button">Home</a>
+        <a href="pythonProjects.html" class="Sidebar-item Sidebar-button">Python Projects</a>
+        <a href="UnrealProjects.html" class="Sidebar-item Sidebar-button">Unreal Engine Projects</a>
+        <a href="Gallery.html" class="Sidebar-item Sidebar-button">Gallery</a>
+        <a href="Contact.html" class="Sidebar-item Sidebar-button">Contact</a>
+        <a href="about.html" class="Sidebar-item Sidebar-button">About</a>
+    </div>
+
+    <!-- Page content -->
+    <div class="main-content">
+        <div class="Sidebar-container">
+            <button class="Sidebar-button Sidebar-xxlarge" onclick="Sidebar_open()">&#9776; Menu</button>
+        </div>
+    
+    
+        <section id="home" class="hero section">
+            <div class="hero-content">
+                <h1>Arun.G</h1>
+                <h2>Web, Python & Game Developer</h2>
+                <div class="profile-container">
+                    <img src="Images/ProfilePicture.PNG" alt="Your Picture" class="profile-picture">
+                </div>
+                <p>Welcome to my portfolio website. Here you'll find information about my projects, skills, and background.</p> 
+                <p>I'm passionate about web and game development and always eager to learn new technologies and improve my skills.</p>
+            </div>
+        </section>
+
+    
         
         <main>
-            <section id="home" class="section home">
-                <h1>Welcome to My Site</h1>
-                <p>This is site aims to showcase some of my skills, projects and achievements.</p>
+            <section id="education" class="section">
+                <h2>Education</h2>
+                <div class="timeline">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-item">
+                            <h3>High School</h3>
+                            <p>Details about your high school education.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h3>Undergraduate in Computer Science</h3>
+                            <p>Completed a 3-year degree in computer science at UCB, Birmingham.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h3>Graduate School</h3>
+                            <p>Details about your graduate school education.</p>
+                        </div>
+                        <!-- Add more timeline items as needed -->
+                    </div>
+                </div>
+            </section>
+            
+            <section id="development" class="section">
+                <h2>Development</h2>
+                <div class="timeline">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-item">
+                            <h3>Python Basics</h3>
+                            <p>Learnt python, practising its uses in Machine Learning and its ability to train in games like pong and snakes.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h3>Unreal Engine grips</h3>
+                            <p>Completed a 3-year degree in computer science at UCB, Birmingham.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h3>Full Stack Web Development</h3>
+                            <p>Created a digital game store website with database functionality and launched this as my first live website.</p>
+                        </div>
+                    </div>
+                </div>
             </section>
 
-            <section id="about" class="section about">
-                <h2>About Me</h2>
-                <p>I like coding and enjoy problem solving.</p>
+            <section id="resume" class="section">
+                <h2>Resume</h2>
+                <p>Download my <a href="resume.pdf">resume</a>.</p>
             </section>
-
-            
-
-            
         </main>
+
+        <footer>
+            <p>&copy; 2024. Arun.G</p>
+            <!-- Links to useful resources -->
+            <ul>
+                <li><a href="www.linkedin.com/in/"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                   </svg></a></li>
+                <li><a href="https://github.com"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                    </svg></a></li>
+            </ul>
+        </footer>
     </div>
+
+    <script>
+        document.addEventListener('scroll', function () {
+            const timeline = document.querySelector('.timeline');
+            const dot = document.querySelector('.timeline-dot');
+            const timelineRect = timeline.getBoundingClientRect();
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Calculate the position of the dot based on scroll position
+            const dotPosition = Math.min(
+                Math.max(scrollTop - timelineRect.top + window.innerHeight / 2, 0),
+                timelineRect.height - dot.offsetHeight
+            );
+
+            // Set the position of the dot
+            dot.style.top = `${dotPosition}px`;
+        });
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fflate@0.6.9/umd/index.js"></script> <!-- Added fflate library -->
-    <script src="https://cdn.rawgit.com/mrdoob/three.js/r128/examples/js/loaders/FBXLoader.js"></script>
-    <script src="scripts.js"></script>
+        function Sidebar_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+        }
+
+        function Sidebar_close() {
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("myOverlay").style.display = "none";
+        }
+
+    
+    
+    
+    </script>
 </body>
-<footer>
-    <p>&copy; 2024. Arun.G</p>
-</footer>
 </html>
